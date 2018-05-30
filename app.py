@@ -8,7 +8,7 @@ header = render_template('header/header.html')
 @app.route('/<page>')
 def index(page = ''):
 	page = render_template('page1/page1.html', {
-		'name': 'Bassim',
+		'name': 'Simergie',
 		'page': page
 	})
 	return header + page
