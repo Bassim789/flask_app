@@ -5,10 +5,10 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/<page>')
 def index(page = ''):
-	page = render_template('page1/page1.html', {
-		'name': 'Simergie',
-		'page': page
-	})
+	# page = render_template('page1/page1.html', {
+	# 	'name': 'Simergie',
+	# 	'page': page
+	# })
 	return 'test'
 
 if __name__ == "__main__":
