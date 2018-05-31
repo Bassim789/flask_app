@@ -1,0 +1,61 @@
+@import '../../../app/styl/var'
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button
+	-webkit-appearance none
+
+
+
+.table
+	margin auto
+	background #fff
+	color #666
+	border 1px solid #ddd
+	border-collapse collapse
+	tr 
+		td
+			border-top 1px solid #ddd
+		&:hover td
+			background #f3f3f3
+			input
+				background #f3f3f3
+	button
+		border-radius 3px
+		background color_1
+		color #fff
+		box()
+		&:hover
+			background color_1_darker
+
+.form
+	width calc(100% - 40px)
+	max-width 350px
+	margin auto
+	box()
+	input, textarea, select, select option
+		display inline-block
+		float left
+		width 100%
+		border none
+		border-bottom 1px solid #ddd
+		padding 10px 20px
+		outline none
+		height 40px
+		min-height 40px
+		resize vertical
+		background #fff
+		box()
+	button
+		display inline-block
+		float left
+		width 100%
+		color #fff
+		background color_1
+		border 0
+		border-radius 0
+		padding 10px 20px
+		outline none
+		margin 0
+		box()
+		&:hover
+			background color_1_darker

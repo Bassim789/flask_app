@@ -1,0 +1,29 @@
+<template template="search_variable">
+	<input event="keyup:input_add_data_keyup" 
+		id="input_add_data" type="text" placeholder="variables">
+	<div id="add_data_options"></div>
+	<div id="add_variable_types">
+		<div event="click:add_variable_type_click" data-type_name="time"
+			class="add_variable_type selected">
+			Temporelle
+		</div>
+		<div event="click:add_variable_type_click" data-type_name="unit" 
+			class="add_variable_type">
+			Unité
+		</div>
+	</div>
+</template>
+
+<template template="data_options">
+	{{#options}}
+		<div event="click:add_data_option_click" class="add_data_option">
+			{{name}}
+		</div>
+	{{/options}}
+	{{#add_variable}}
+		<div event="click:add_variable_click" class="add_data_option selected">
+			Ajouter variable: {{name}}
+		</div>
+	{{/add_variable}}
+</template>
+

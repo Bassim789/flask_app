@@ -1,0 +1,112 @@
+@import '../../app/styl/var'
+
+@font-face
+	font-family titre
+	src url('/app/media/font/billabong.ttf')
+
+html
+	background #666
+
+html, body 
+	width 100%
+	height 100%
+	padding 0
+	margin 0
+	text-align center
+	color #fff
+	-webkit-tap-highlight-color rgba(255, 255, 255, 0)
+#body_wrap
+	width 100%
+	min-height calc(100vh - 100px)
+	position relative
+	margin auto
+	padding-top 50px
+	display flex
+	display -webkit-flex
+	align-items center
+	overflow-y scroll
+	overflow-x hidden
+	#body
+		margin auto
+		width 100%
+#background
+	display inline-block
+	position fixed
+	top 0
+	right 0
+	width 100%
+	height 100%
+	background-color #fff
+	background-size cover
+	background-position center
+	background-repeat no-repeat
+	opacity 0
+	z-index -2
+button
+	padding 15px 30px
+	margin 5px
+	background transparent
+	border 1px solid #66CCFF
+	border-radius 20px
+	cursor pointer
+	color #66CCFF
+	outline 0
+	&:hover
+		background rgba(100, 100, 100, 0.3)
+	&:active
+		background rgba(150, 150, 150, 0.3)
+
+.button_red
+	border 1px solid #f00
+	color #f00
+
+
+.main_title
+	font-family titre
+	font-size 80px
+	
+
+.close_btn_wrap
+	display inline-block
+	float right
+	cursor pointer
+	margin-right 12px
+	padding-right 0px
+	margin-top 7px
+	width 42px
+	height 33px
+	&:active
+		background-color rgba(0,0,0, 0.1)
+
+.close_btn
+	margin-right 12px
+	padding-right 0px
+	display inline-block
+	float right
+	margin-top 9px
+	width 32px
+	height 32px
+	&:before
+		-webkit-transform rotate(45deg)
+		transform rotate(45deg)
+	&:after
+		-webkit-transform rotate(-45deg)
+		transform rotate(-45deg)
+
+.close_btn:before,
+.close_btn:after
+	margin-right -2px
+	display inline-block
+	content ' '
+	height 33px
+	width 2px
+	background-color text_color
+
+.close_btn_black
+	height auto
+	margin-right 9px
+
+.close_btn_black:before,
+.close_btn_black:after
+	height 23px
+	background-color #000

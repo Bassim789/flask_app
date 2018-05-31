@@ -1,0 +1,74 @@
+<template page="index">
+	<h1 class="main_title">
+		New app
+	</h1>
+	<button event="click:connexion_clicked">
+		Connexion
+	</button>
+	<button event="click:inscription_clicked">
+		Inscription
+	</button>
+	<div id="popup_box"></div>
+</template>
+
+<template template="popup">
+	<div id="shadow"></div>
+	<div id="popup_wrap">
+		<div id="popup">
+			<div event="click:close_popup" class="close_btn_wrap">
+				<a class="close_btn close_btn_black"></a>
+			</div>
+			<br>
+			<div class="fullBox">
+				<div id="popup_response" class="popup_response">
+					<!-- HERE GO ERROR MESSAGE -->
+				</div>
+				<div class="loading_balls" style="display: none;">
+					<div class="ball_out"></div>
+					<div class="ball_in"></div>
+				</div>
+				<br>
+				{{{content}}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template template="popup_connexion">
+	<form>
+		<input event="enter:connexion_submit_enter" id="email_connexion" class="text_box" type="email" placeholder="Email">
+		<br>
+		<input event="enter:connexion_submit_enter" id="password_connexion" class="text_box" type="password" placeholder="Mot de passe">
+		<br>
+		<input event="click:connexion_submit_btn" class="btn" type="button" value="Connexion">
+		<br> <br>
+		<span>
+			Garder ma session active
+		</span>
+		<input type="checkbox" checked="" id="connexion_remember">
+		<br><br>
+		<a event="click:show_forgot_password_box" class="text_click">
+			Mot de passe oublié?
+		</a>
+		<br>
+	</form>
+</template>
+
+<template template="popup_inscription">
+    <form>
+        <input id="email_signin" type="email" class="text_box" placeholder="Email">
+        <br>
+        <input id="password_signin" class="text_box" type="password" placeholder="Mot de passe">
+        <br>
+        <div id="g-recaptcha"></div>
+        <input event="click:signin_submit_btn" class="btn" type="button" value="Inscription">
+        <div class="messagePetit">
+            En cliquant sur Inscription, vous acceptez nos <a class="condition" href="/generalTerms">Conditions</a>
+            et indiquez que vous avez lu notre
+            <a class="condition" href="/generalTerms">Politique</a>
+            d’utilisation des données,
+            y compris notre <a class="condition" href="/generalTerms">Utilisation</a> des cookies.
+        </div>
+    </form>
+</template>
+

@@ -1,0 +1,26 @@
+<template template="add_data_info">
+	<div id="add_data_info">
+		<input id="input_start_time" placeholder="Début"
+			event="change:input_time_change"
+			type="datetime" readonly class="input_datetime">
+		<div class="input_duration_wrap">
+			<input id="input_time_last" placeholder="Durée"
+				event="change:input_time_change" value="00:00:00" 
+				type="time" readonly class="input_datetime">
+			<div class="duration_clean"></div>
+		</div>
+		<input id="input_end_time" placeholder="Fin" 
+			event="change:input_time_change"
+			type="datetime" readonly class="input_datetime">
+		<button event="click:add_data_save_click">
+			Enregistrer
+		</button>
+		<br><br><br><br>
+		<button event="click:delete_variable_click" class="button_red">
+			Supprimer
+			<br>
+			variable
+		</button>
+		<br><br>
+	</div>
+</template>

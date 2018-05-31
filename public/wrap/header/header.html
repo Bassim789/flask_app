@@ -1,0 +1,42 @@
+<template template="header">
+	<div id="header_title" class="noselect" event="click:goto" page="">
+		<div>LD</div>
+	</div>
+	<div event="click:toggle_sidr" class="menu_btn"><div></div></div>
+	<div id="overlay_sidebar_menu" event="click:toggle_sidr"></div>
+	<div id="sidr">
+		<div class="sidr_head">
+			<div class="close_btn_wrap" event="click:toggle_sidr">
+				<a class="close_btn"></a>
+			</div>
+		</div>
+		<div style="height: 100vh; overflow: scroll;">
+			<ul style="margin-top: 0px;">
+				{{#user_is_logged}}
+				<li>
+					{{email}}
+				</li>
+				<li event="click:goto" page="todo">
+					Todo
+				</li>
+				<li event="click:goto" page="profil">
+					Saisir data
+				</li>
+				<li event="click:goto" page="timeline">
+					Timeline
+				</li>
+				<li event="click:logout">
+					Déconnexion
+				</li>
+				{{/user_is_logged}}
+				{{^user_is_logged}}	
+				<p style="line-height: 20px; padding: 20px;">
+					Merci de vous connecter pour accèder à l'application
+				</p>
+				{{/user_is_logged}}
+			</ul>
+			<div style="margin-bottom: 70px;""></div>
+		</div>
+		<div id="sidr_background"></div>
+	</div>
+</template>

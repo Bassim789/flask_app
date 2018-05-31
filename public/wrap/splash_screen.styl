@@ -1,0 +1,54 @@
+ball_color = #fff
+
+#splash_screen
+	display none
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	background #666
+	z-index 10000
+.loading_balls
+	z-index 2000
+	position absolute
+	top 50%
+	left 50%
+	margin-top -25px
+	margin-left -25px
+	.ball_out
+		background-color rgba(0,0,0,0)
+		border 5px solid ball_color
+		opacity .9
+		border-top 5px solid rgba(0,0,0,0)
+		border-left 5px solid rgba(0,0,0,0)
+		border-radius 50px
+		box-shadow 0 0 35px ball_color
+		width 50px
+		height 50px
+		margin 0 auto
+		-moz-animation spin .5s infinite linear
+		-webkit-animation spin .5s infinite linear
+		animation spin .5s infinite linear
+	.ball_in
+		background-color rgba(0,0,0,0)
+		border 5px solid ball_color
+		opacity .9
+		border-top 5px solid rgba(0,0,0,0)
+		border-left 5px solid rgba(0,0,0,0)
+		border-radius 50px
+		box-shadow 0 0 15px ball_color
+		width 30px
+		height 30px
+		margin 0 auto
+		position relative
+		top -50px
+		-moz-animation spinoff .5s infinite linear
+		-webkit-animation spinoff .5s infinite linear
+		animation spinoff .5s infinite linear
+	@keyframes spin
+		0% {transform: rotate(0deg)}
+		100% {transform: rotate(360deg)}
+	@keyframes spinoff
+		0% {transform: rotate(0deg)}
+		100% {transform: rotate(-360deg)}

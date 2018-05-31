@@ -1,0 +1,177 @@
+@import '../../../app/styl/var'
+
+#data_box
+	width calc(100% - 40px)
+	max-width 610px
+	margin auto
+	padding-top calc(50vh - 50px)
+	height calc(100vh - 50px)
+	box()
+	.add_data_box
+		position relative
+		float left
+		display inline-block
+		width 100%
+		max-width 300px
+		margin auto
+		margin-right 5px
+		#input_add_data
+			display inline-block
+			width 100%
+			box()
+			margin 0px
+			padding 10px
+			outline 0
+			border 1px solid #ddd
+			-webkit-appearance none
+			border-radius 0
+		#add_data_options
+			width 100%
+			margin auto
+			margin-top 0px
+			.add_data_option
+				padding 5px 0px
+				display inline-block
+				width 100%
+				&:hover
+					background rgba(150, 150, 150, 0.3)
+				&:active
+					background rgba(150, 150, 150, 0.5)
+			.selected
+				background rgba(150, 150, 150, 0.3)
+				color #66CCFF
+		#add_variable_types
+			display none
+			width 100%
+			margin auto
+			border-top 1px solid #fff
+			margin-top 20px
+			.add_variable_type
+				padding 5px 0px
+				border-bottom 1px solid #fff
+				display inline-block
+				width 100%
+				&:hover
+					background rgba(150, 150, 150, 0.3)
+				&:active
+					background rgba(150, 150, 150, 0.5)
+			.selected
+				background rgba(150, 150, 150, 0.3)
+				color #66CCFF
+		#add_data_info
+			display none
+			width 100%
+			margin auto
+			.input_datetime
+				cursor pointer
+				display inline-block
+				width 100%
+				box()
+				margin 0px
+				padding 10px
+				outline 0
+				border none
+				-webkit-appearance none
+				border-radius 0
+	#data_total_box
+		margin-left 5px
+		width 100%
+		max-width 300px
+		display inline-block
+		float left
+		.data_total_box
+			width 100%
+			margin auto
+			display inline-block
+			float left
+			text-align center
+			.input_date_fifty_box
+				display inline-block
+				width 100%
+				.input_date_fifty
+					text-align center
+					display inline-block
+					float left
+					width 50%
+					box()
+					margin 0px
+					padding 10px
+					outline 0
+					border none
+					-webkit-appearance none
+					border-radius 0
+			.input_datetime
+				display inline-block
+				width 100%
+				box()
+				margin 0px
+				padding 10px
+				outline 0
+				border none
+				-webkit-appearance none
+				border-radius 0
+				text-align center
+				cursor pointer
+			.data_total_row
+				color #333
+				margin 2px 0px
+				position relative
+				.input_duration
+					color #fff
+				.close_btn_wrap
+					position absolute
+					right 2px
+					top 2px
+					margin 0
+					padding-top 2px
+					width 30px
+					height 25px
+					.close_btn_black
+						margin 0
+				.data_total_row_var_name
+					background #fff
+				
+	.input_duration_wrap
+		color #fff
+		display inline-block
+		width 100%
+		position relative
+		text-align center
+		.duration_clean
+			color #333
+			display inline-block
+			width 100%
+			background #fff
+			position absolute
+			top 7px
+			left 0px
+			height 0px
+			pointer-events none
+		.input_datetime
+			text-align center
+			color #fff
+					
+					
+
+@media all and (max-width: 660px)
+	#data_box
+		width 100%
+		max-width 100%
+		padding-top 0
+		top 50px
+		bottom 0px
+		left 0
+		position absolute
+		height auto
+		min-height auto
+		.add_data_box
+			margin-right 0
+			max-width 100%
+		#data_total_box
+			width 100%
+			max-width 100%
+			margin-left 0
+			margin-top 20px
+
+
+			

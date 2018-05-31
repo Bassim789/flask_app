@@ -1,0 +1,51 @@
+<template page="profil">
+	<div id="data_box">
+		<div class="add_data_box">
+			<div id="search_variable_box"></div>
+			<div id="add_data_info_box"></div>
+		</div>
+		<div id="data_total_box"></div>
+	</div>
+	<div id="dtBox"></div>
+</template>
+
+<template template="data_total">
+	<div class="data_total_box">
+		<div class="input_date_fifty_box">
+			<input event="change:input_date_change" id="data_total_start_date"
+					type="text" class="input_date_fifty" value="{{current_date}}" 
+					placeholder="Date de début" readonly>
+			<input event="change:input_date_change" id="data_total_end_date" 
+					type="text" class="input_date_fifty" readonly
+					placeholder="Date de fin">
+		</div>
+		<div id="data_total_data_box"></div>
+		<br><br>
+	</div>
+</template>
+
+<template template="data_total_data">
+	{{#data}}
+		<div class="data_total_row" data-id_data="{{id}}">
+		 	<div event="click:delete_data_click" class="close_btn_wrap">
+				<a class="close_btn close_btn_black"></a>
+			</div>
+			<div class="data_total_row_var_name">
+				{{var_name}}
+			</div>
+			<input placeholder="Début" event="change:input_time_change" 
+			 	value="{{start}}" type="datetime" readonly class="input_datetime">
+			<div class="input_duration_wrap">
+				<input placeholder="Durée" event="change:input_time_change" 
+					value="{{duration}}" type="time" readonly 
+					class="input_datetime input_duration">
+				<div class="duration_clean">
+					{{duration_clean}}
+				</div>
+			</div>
+			<input id="input_end_time" placeholder="Fin" 
+				event="change:input_time_change" value="{{end}}" 
+				type="datetime" readonly class="input_datetime">
+		</div>
+	{{/data}}
+</template>

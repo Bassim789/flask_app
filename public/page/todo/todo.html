@@ -1,0 +1,128 @@
+<template page="todo">
+	<div style="width: 100%; display: inline-block;">
+		<div style="width: 100%; display: inline-block;">
+			<form id="form_add_category" class="form" style="display: none; position: relative;">
+				<div event="click:btn_close_popup" style="position: absolute; top: 0; right: 0; cursor: pointer;">X</div>
+				<h2>Nouvelle catégorie</h2>
+				<input type="text" name="name" placeholder="Nom" event="enter:input_add_category">
+				<br>
+				<textarea name="detail" placeholder="Détail"></textarea>
+				<br>
+				<button event="click:btn_add_category" style="position: relative;">
+					Ajouter catégorie
+					<span style="font-size: 30px; position: absolute; top: -3px; right: calc(100% / 2 - 80px)">+</span>
+				</button>
+			</form>
+		</div>
+		<div id="categories_container" style="margin-top: 20px;">
+			<table class="table" style="">
+				<tr>
+					<th colspan="3">
+						<h2 style="float: left; padding-left: 10px;">Catégories</h2>
+						<button event="click:btn_popup_add_category" style="position: relative; float: right;">
+							ajouter
+							<span style="font-size: 30px; position: absolute; top: 1px; right: 7px">+</span>
+						</button>
+					</th>
+				</tr>
+				<tr>
+					<th></th>
+					<th>actions</th>
+					<th></th>
+				</tr>
+				<!-- {{#categories}} -->
+				<tr data-category_id="{{id}}">
+					<td style="text-align: left; padding-left: 10px;">{{name}}</td>
+					<td style="text-align: right;">{{nb_elem}}</td>
+					<td style="text-align: left; padding-left: 10px;">
+						<button event="click:btn_popup_add_action" style="position: relative; padding: 0px 10px; margin: 0;">
+							<span style="font-size: 20px;">+</span>
+						</button>
+						<button event="click:btn_edit_category" style="position: relative; padding: 0px 10px; margin: 0;">
+							<span style="font-size: 20px;">o</span>
+						</button>
+						<button event="click:btn_remove_category" style="position: relative; padding: 0px 10px; margin: 0;">
+							<span style="font-size: 20px;">x</span>
+						</button>
+					</td>
+				</tr>
+				<!-- {{/categories}} -->
+			</table>
+		</div>
+	</div>
+	<div style="width: 100%; display: inline-block;">
+		<form id="form_add_action" class="form" style="display: none; position: relative;">
+			<div event="click:btn_close_popup" style="position: absolute; top: 0; right: 0; cursor: pointer;">X</div>
+			<h2>Nouvelle action</h2>
+			<input type="text" name="name" placeholder="Nom" event="enter:input_add_action">
+			<br>
+			<textarea name="detail" placeholder="Détail"></textarea>
+			<br>
+			<div style="position: relative; display: inline-block; float: left; width: 100%;">
+				<span style="position: absolute; top: 10px; left: 10px; color: #bbb; font-size: 12px;">Temps prévu hh:mm</span>
+				<input type="number" name="time_todo_hour" placeholder="00" style="width: 50%; text-align: right; padding: 10px 0px">
+				<span style="position: absolute;  top: 10px; right: calc(50% - 14px); color: #666;">:</span>
+				<input type="number" name="time_todo_minute" placeholder="00" style="width: 50%;">
+			</div>
+			<select id="category_id" name="category_id">
+				{{#categories}}
+				<option value="{{id}}">{{name}}&nbsp;({{nb_elem}})</option>
+				{{/categories}}
+			</select>
+			<button event="click:btn_add_action" style="position: relative;">
+				Ajouter catégorie
+				<span style="font-size: 30px; position: absolute; top: -3px; right: calc(100% / 2 - 80px)">+</span>
+			</button>
+		</form>
+	</div>
+	<div id="actions_container" style="margin-top: 20px;">
+		<table class="table" style="">
+			<tr>
+				<th colspan="5">
+					<h2 style="float: left; padding-left: 10px;">Actions</h2>
+					<button event="click:btn_popup_add_action" style="position: relative; float: right;">
+						ajouter
+						<span style="font-size: 30px; position: absolute; top: 1px; right: 7px">+</span>
+					</button>
+				</th>
+			</tr>
+			<tr>
+				<th></th>
+				<th></th>
+				<th>prévu</th>
+				<th>fait</th>
+				<th></th>
+			</tr>
+			<!-- {{#actions}} -->
+			<tr data-action_id="{{id}}">
+				<td style="text-align: left; padding-left: 10px;">
+					{{name}}
+				</td>
+				<td style="text-align: left; padding-left: 10px;">
+					{{category}}
+				</td>
+				<td style="text-align: left; padding-left: 10px;">
+					{{time_todo_hour}}:{{time_todo_minute}}</td>
+				<td>
+					<div style="display: inline-block; float: left; background: #fff; position: relative; margin-right: 10px;">
+						<input type="number" class="time_done_hour" value="{{time_done_hour}}" placeholder="heure" event="keyup:input_time_done" style="width: 30px; padding: 5px; text-align: right; border: 0; outline: 0;">
+						<span style="position: absolute;  top: 2px; right: calc(50% - 3px); color: #666;">:</span>
+						<input type="number" class="time_done_minute" value="{{time_done_minute}}" placeholder="minute" event="keyup:input_time_done" style="width: 30px; padding: 5px; border: 0; outline: 0;">
+					</div>
+				</td>
+				<td style="text-align: left; padding-left: 10px;">
+					<button event="click:btn_action_done" style="position: relative; padding: 0px 10px; margin: 0;">
+						<span style="font-size: 20px;">+</span>
+					</button>
+					<button event="click:btn_edit_action" style="position: relative; padding: 0px 10px; margin: 0;">
+						<span style="font-size: 20px;">o</span>
+					</button>
+					<button event="click:btn_remove_action" style="position: relative; padding: 0px 10px; margin: 0;">
+						<span style="font-size: 20px;">x</span>
+					</button>
+				</td>
+			</tr>
+			<!-- {{/actions}} -->
+		</table>
+	</div>
+</template>

@@ -1,0 +1,23 @@
+<template template="page_timeline">
+	<div id="timeline_select_range_box">
+		<div class="input_date_fifty_box">
+			<input event="change:input_date_change" id="timeline_start_date"
+					type="text" class="input_date_fifty" value="{{start_date}}" 
+					placeholder="Date de début" readonly>
+			<input event="change:input_date_change" id="timeline_end_date" 
+					type="text" class="input_date_fifty" value="{{end_date}}"
+					placeholder="Date de fin" readonly> 
+		</div>
+	</div>
+	<div id="timeline_box_wrap">
+		<div id="timeline_box"></div>
+	</div>
+</template>
+
+
+<template template="timeline_tooltip">
+	<div event="click:remove_tooltip">close</div>
+	<div style="padding: 20px">
+		{{var_name}}
+	</div>
+</template>
