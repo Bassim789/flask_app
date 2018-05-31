@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<meta charset="utf-8">
 	<meta name="theme-color" content="#777">
-	<link rel="shortcut icon" href="app/media/img/lively_data_logo.png?v=3">
+	<link rel="shortcut icon" href="app/media/img/lively_data_logo.png?v=4">
 	<link rel="manifest" href="manifest.json">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -23,9 +23,7 @@
 	<script src="app/lib/DateTimePicker/DateTimePicker.js"></script>
 	<link rel="stylesheet" href="app/lib/alert/alert.css">
 	<script src="app/lib/alert/alert.js"></script>
-	<script src="service-worker-starter.js"></script>
-	<link href="app/lib/vis/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css">
-	<script src="app/lib/vis/vis.js?v=4"></script>
+	<!-- <script src="service-worker-starter.js"></script> -->
 	<script>
 	pages = {}
 	parts = {}
@@ -58,12 +56,6 @@
 	</div>
 	<footer></footer>
 	<div id="background"></div>
-	<div id="splash_screen">
-		<div class="loading_balls">
-			<div class="ball_out"></div>
-			<div class="ball_in"></div>
-		</div>
-	</div>
 	<script> 
 		app = new App() 
 		app.router.load_page()
