@@ -7,7 +7,7 @@ class Watcher{
 		this.nb_styl = 0
 		this.nb_folder_started = 0
 		this.watched_folders = false
-		this.connect('newapp2.simergie.ch')
+		//this.connect('newapp2.simergie.ch')
 		this.exec = require('child_process').exec
 		this.fs = require('fs')
 		this.watcher(this.folders)
@@ -80,10 +80,10 @@ class Watcher{
 				if (stderr) console.log(stderr)
 				let css_file = path_compiled + file.substring(file.lastIndexOf('/') + 1)
 				css_file = css_file.replace('.styl', '.css')
-				this.io.sockets.emit('file_updated', {file_name: css_file})
+				//this.io.sockets.emit('file_updated', {file_name: css_file})
 			})
 		} else {
-			this.io.sockets.emit('file_updated', {file_name: file})
+			//this.io.sockets.emit('file_updated', {file_name: file})
 		}
 	}
 	check_new_sub_folders(folders){
@@ -119,7 +119,7 @@ class Watcher{
 	}
 }
 const watcher = new Watcher({
-	root: './',
+	root: '/var/www/flask_app/',
 	folder_compiled: 'compiled',
 	folders: [
 		'public',

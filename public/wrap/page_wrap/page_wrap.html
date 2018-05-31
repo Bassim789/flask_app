@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New app</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#777">
+	<link rel="shortcut icon" href="app/media/img/lively_data_logo.png?v=3">
+	<link rel="manifest" href="manifest.json">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="app/lib/datepicker-fr.js"></script>
+	<script src="app/lib/mustache.min.js"></script>
+	<script src="app/lib/socket.js"></script>
+	<script src="app/lib/moment/moment.js"></script>
+	<script src="app/lib/moment/moment-duration-format.js"></script>
+	<script src="app/lib/moment/moment_locale_fr.js"></script>
+	<script src="app/lib/HumanizeDuration.js"></script>
+	<link href="app/lib/DateTimePicker/DateTimePicker.css" rel="stylesheet">
+	<script src="app/lib/DateTimePicker/DateTimePicker.js"></script>
+	<link rel="stylesheet" href="app/lib/alert/alert.css">
+	<script src="app/lib/alert/alert.js"></script>
+	<script src="service-worker-starter.js"></script>
+	<link href="app/lib/vis/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css">
+	<script src="app/lib/vis/vis.js?v=4"></script>
+	<script>
+	pages = {}
+	parts = {}
+	{{#gvar}}
+		gvar = {}
+		gvar.first_load = true
+		gvar.watcher = {{watcher}}
+		gvar.page_data = {{{page_data}}}
+		gvar.img = {}
+		gvar.img.default_desktop = 'app/media/img/back2.jpg'
+		gvar.img.default_mobile = 'app/media/img/back2.jpg'
+		gvar.user = {
+			is_admin: {{user_is_admin}},
+			is_logged: {{user_is_logged}},
+			session_hash: "{{user_session_hash}}",
+			email: "{{user_email}}"
+		}
+	{{/gvar}}
+	</script>
+	{{#ressources}}
+		{{#css}}<link href="{{url}}?t={{timestamp}}" rel="stylesheet">{{/css}}
+		{{#js}}<script src="{{url}}?t={{timestamp}}"></script>{{/js}}
+		{{#html}}{{{content}}}{{/html}}
+	{{/ressources}}
+</head>
+<body>
+	<header></header>
+	<div id="body_wrap">
+		<div id="body">{{{page_from_backend}}}</div>
+	</div>
+	<footer></footer>
+	<div id="background"></div>
+	<div id="splash_screen">
+		<div class="loading_balls">
+			<div class="ball_out"></div>
+			<div class="ball_in"></div>
+		</div>
+	</div>
+	<script> 
+		app = new App() 
+		app.router.load_page()
+	</script>
+</body>
+</html>
