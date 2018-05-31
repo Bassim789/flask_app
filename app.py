@@ -20,7 +20,7 @@ def index(page = ''):
 	])
 	user = User()
 	page_data = {}
-	page_from_backend = 'test page'
+	page_from_backend = '<h1 class="main_title">New app</h1>'
 	ressources = loader.get_ressources()
 	page_wrap = render_template('page_container.html', {
 		'page_from_backend': page_from_backend,

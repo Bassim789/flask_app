@@ -17,6 +17,7 @@ var Watcher = function () {
 		value: function connect() {
 			this.socket = io.connect(this.url, { reconnection: false });
 			this.event();
+			console.log(this.socket);
 		}
 	}, {
 		key: 'event',
@@ -24,13 +25,15 @@ var Watcher = function () {
 			var _this = this;
 
 			this.socket.on('file_updated', function (data) {
+				console.log('file_updated');
+				console.log(data.file_name);
 				_this.reload(data.file_name);
 			});
 		}
 	}, {
 		key: 'reload_css',
 		value: function reload_css(file) {
-			var name = file.split('www/')[1].split('.css')[0];
+			var name = /compiled/ + file.split('/compiled/')[1].split('.css')[0];
 			var queryString = '?reload=' + new Date().getTime();
 			$('link[rel="stylesheet"]').each(function () {
 				if (this.href.includes(name)) {

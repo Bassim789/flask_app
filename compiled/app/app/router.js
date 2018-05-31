@@ -6,9 +6,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Router = function () {
 	function Router(domain) {
+		var _this = this;
+
 		_classCallCheck(this, Router);
 
 		this.domain = domain;
+		$(window).on('popstate', function () {
+			return _this.popstate();
+		});
 	}
 
 	_createClass(Router, [{
@@ -44,6 +49,11 @@ var Router = function () {
 			var page_name = location.pathname.split(this.domain)[1].replace(/\//g, '');
 			page_name = page_name === '' ? 'index' : page_name;
 			new pages[page_name]();
+		}
+	}, {
+		key: 'popstate',
+		value: function popstate() {
+			this.load_page();
 		}
 	}]);
 

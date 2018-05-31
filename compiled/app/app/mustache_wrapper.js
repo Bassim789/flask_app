@@ -12,5 +12,14 @@ $.fn.extend({
 	template_prepend: function template_prepend(template, data) {
 		if (data === undefined) data = {};
 		this.prepend(Mustache.render($('template[template="' + template + '"]').html(), data));
+	},
+	template_page: function template_page(template, data) {
+		if (data === undefined) data = {};
+		this.html(Mustache.render($('template[page="' + template + '"]').html(), data));
 	}
 });
+
+$.get_template = function (template, data) {
+	if (data === undefined) data = {};
+	return Mustache.render($('template[template="' + template + '"]').html(), data);
+};

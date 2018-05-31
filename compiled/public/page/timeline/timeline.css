@@ -1,0 +1,48 @@
+#timeline_box_wrap {
+  width: calc(100% - 80px);
+  margin: auto;
+  display: inline-block;
+  background: #fff;
+  overflow: hidden;
+}
+#timeline_box_wrap #timeline_box {
+  height: auto;
+  color: #333;
+}
+#timeline_box_wrap #timeline_box .vis-inner {
+  height: 58px;
+  width: 80px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#timeline_select_range_box {
+  margin: auto;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+}
+#timeline_select_range_box .input_date_fifty_box {
+  display: inline-block;
+  width: 100%;
+}
+#timeline_select_range_box .input_date_fifty_box .input_date_fifty {
+  text-align: center;
+  display: inline-block;
+  float: left;
+  width: 50%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 10px;
+  outline: 0;
+  border: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+@media all and (max-width: 660px) {
+  #timeline_box_wrap {
+    width: 100%;
+  }
+}

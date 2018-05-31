@@ -35,7 +35,7 @@ var Body = function () {
 	}, {
 		key: 'set_body_min_height',
 		value: function set_body_min_height() {
-			$('#body_wrap').css('min-height', $(window).height() - 101 + 'px');
+			$('#body_wrap').css('min-height', $(window).height() - 50 + 'px');
 			$('.full_height_box').css('min-height', $(window).height() - 50 + 'px');
 		}
 	}, {
@@ -48,7 +48,7 @@ var Body = function () {
 				background.css({
 					backgroundImage: 'url(' + img_src + ')',
 					height: $(window).height() + 100
-				}).fadeTo(700, 0.5);
+				}).fadeTo(1000, 0.1);
 			});
 		}
 	}, {

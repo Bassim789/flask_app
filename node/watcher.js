@@ -7,7 +7,7 @@ class Watcher{
 		this.nb_styl = 0
 		this.nb_folder_started = 0
 		this.watched_folders = false
-		//this.connect('newapp2.simergie.ch')
+		this.connect('newapp2.simergie.ch')
 		this.exec = require('child_process').exec
 		this.fs = require('fs')
 		this.watcher(this.folders)
@@ -30,6 +30,7 @@ class Watcher{
 		server.listen(port, () => {
 			console.log('Watcher running on port ' + port)
 		})
+		console.log('socket connexion')
 	}
 	watcher(folders){
 		const chokidar = require('chokidar')
@@ -78,12 +79,13 @@ class Watcher{
 			this.force_directory_sync(path_compiled)
 			this.exec(`stylus ${file} --out ${path_compiled}`, (e, stdout, stderr) => {
 				if (stderr) console.log(stderr)
+				console.log(stdout)
 				let css_file = path_compiled + file.substring(file.lastIndexOf('/') + 1)
 				css_file = css_file.replace('.styl', '.css')
-				//this.io.sockets.emit('file_updated', {file_name: css_file})
+				this.io.sockets.emit('file_updated', {file_name: css_file})
 			})
 		} else {
-			//this.io.sockets.emit('file_updated', {file_name: file})
+			this.io.sockets.emit('file_updated', {file_name: file})
 		}
 	}
 	check_new_sub_folders(folders){
