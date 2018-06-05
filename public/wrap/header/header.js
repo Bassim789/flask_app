@@ -1,3 +1,4 @@
+import Event_binder from 'event_binder'
 const Header = class {
 	constructor() {
 		this.sidr_width = 260
@@ -77,3 +78,4 @@ const Header = class {
 		$('.menu_btn').animate({opacity: 1.0,}, this.sidr_transition)
 	}
 }
+export default Header

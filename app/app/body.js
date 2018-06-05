@@ -1,4 +1,4 @@
-const Body = class {
+export default class Body {
 	constructor() {
 		this.background = $('#background')
 		this.mobile_width_limite = 600

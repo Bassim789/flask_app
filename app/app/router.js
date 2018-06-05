@@ -1,4 +1,4 @@
-let Router = class {
+export default class Router {
 	constructor(domain) {
 		this.domain = domain
 		$(window).on('popstate', () => this.popstate())

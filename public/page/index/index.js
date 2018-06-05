@@ -1,3 +1,4 @@
+import Page from 'Page.js'
 Page.add({
 	page_name: 'index',
 	page_from_backend: true,
@@ -37,6 +38,7 @@ Page.add({
 		},
 	},
 	init(){
+		console.log('init index')
 		if(gvar.user.is_logged){
 			app.change_page('todo')
 			return false

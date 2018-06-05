@@ -1,3 +1,4 @@
+import Page from 'Page.js'
 Page.add({
 	page_name: 'profil',
 	page_from_backend: true,

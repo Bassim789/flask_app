@@ -1,4 +1,4 @@
-const Watcher = class{
+export default class Watcher{
 	constructor(){
 		this.url = '//:3013'
 		if (gvar.watcher) this.connect()

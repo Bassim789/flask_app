@@ -1,4 +1,5 @@
-const Page = class {
+import Event_binder from 'event_binder'
+export default class Page{
 	static add(page){
 		page.render = function(){
 			console.log(this.data)

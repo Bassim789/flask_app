@@ -1,4 +1,8 @@
-class App {
+import Header from 'header/header'
+import Body from 'body'
+import Watcher from 'watcher'
+import Router from 'router'
+export default class App {
 	constructor(){
 		this.header = new Header()
 		this.body = new Body()

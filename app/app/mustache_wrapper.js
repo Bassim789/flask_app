@@ -31,3 +31,4 @@ $.get_template = function(template, data) {
 		$('template[template="' + template + '"]').html(), data
 	)
 }
+export default $

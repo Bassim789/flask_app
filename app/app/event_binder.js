@@ -1,4 +1,4 @@
-let Event_binder = class {
+export default class Event_binder {
 	constructor(source, container, events) {
 		this.source = source
 		this.container = $(container)
