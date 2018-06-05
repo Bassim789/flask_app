@@ -1,2 +1,2 @@
-let msg = 'hello webpack'
+let msg = 'hello webpack 4'
 console.log(msg)
