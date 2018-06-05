@@ -1,4 +1,3 @@
-import window
 export default class Body {
 	constructor() {
 		this.background = $('#background')
