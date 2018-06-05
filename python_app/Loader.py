@@ -1,13 +1,11 @@
 import os
 import glob
 class Loader():
-	def __init__(self, root, compiled, folder_compiled):
-		self.compiled = compiled
-		self.folder_compiled = folder_compiled
+	def __init__(self, root):
 		self.root = root
 		self.files = []
 	def get_ressources(self):
-		ressources = {'css': [], 'js': [], 'html': []}
+		ressources = {'html': []}
 		for file in self.files:
 			ressources[file['type']].append(file)
 		return ressources
@@ -20,23 +18,7 @@ class Loader():
 				self.include_files(sub)
 		else:
 			file = file.split(self.root)[1]
-			if file.endswith('.js'): pass
-				# if self.compiled:
-				# 	file = self.folder_compiled + '/' + file
-				# self.files.append({
-				# 	'type': 'js',
-				# 	'url': file,
-				# 	'timestamp': os.path.getmtime(self.root + file)
-				# })
-			# elif file.endswith('.styl'):
-			# 	file = self.folder_compiled + '/' + file.replace('.styl', '.css')
-			# 	if os.path.isfile(self.root + file):
-			# 		self.files.append({
-			# 			'type': 'css',
-			# 			'url': file,
-			# 			'timestamp': os.path.getmtime(self.root + file)
-			# 		})
-			elif file.endswith('.html'):
+			if file.endswith('.html'):
 				with open(self.root + file, 'r') as f: content = f.read()
 				self.files.append({
 					'type': 'html',

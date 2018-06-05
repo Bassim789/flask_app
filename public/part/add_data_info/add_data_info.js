@@ -1,3 +1,4 @@
+import parts from 'globals'
 parts.add_data_info = class{
 	constructor(page){
 		this.page = page

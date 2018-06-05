@@ -29,7 +29,7 @@ export default class Body {
 			background.css({
 				backgroundImage: 'url(' + img_src + ')',
 				height: $(window).height() + 100
-			}).fadeTo(1000, 0.1)
+			}).fadeTo(500, 0.1)
 		})
 	}
 	choose_background() {

@@ -8,10 +8,11 @@ const extractPlugin = new ExtractTextPlugin({
 })
 
 let config = {
-	entry: { main: './src/index.js' },
+	entry: { main: './app.js' },
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'main.js'
+		filename: 'main.js',
+		//library: path.resolve(__dirname, 'app/app')
 	},
 	watch: dev,
 	devtool: "source-map", // dev ? "cheap-module-eval-source-map" : "source-map",
@@ -26,7 +27,7 @@ let config = {
 			},
 			{
 				test: /\.(css|styl)$/,
-				use: extractPlugin.extract({
+				use: ['css-hot-loader'].concat(extractPlugin.extract({
 					use: [
 						{
 							loader: 'css-loader?sourceMap', 
@@ -38,10 +39,10 @@ let config = {
 						},
 						{
 							loader: 'stylus-loader?sourceMap',
-							options: { sourceMap: true },
+							options: { sourceMap: dev },
 						},
 					]
-				})
+				}))
 			}
 		]
 	},
@@ -52,6 +53,7 @@ let config = {
 			'public/part',
 			'app/app',
 			'node_modules',
+			'./',
 		],
 		extensions: ['.js', '.css', '.scss'],
 	},

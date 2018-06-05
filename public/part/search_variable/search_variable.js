@@ -1,3 +1,4 @@
+import parts from 'globals'
 parts.search_variable = class{
 	constructor(page){
 		this.page = page

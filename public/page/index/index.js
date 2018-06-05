@@ -3,13 +3,14 @@ Page.add({
 	page_name: 'index',
 	page_from_backend: true,
 	data_from_backend: false,
-	sitekey: '6LfxBDIUAAAAAAzjMtV266_Bud20ztGI9vm58SUC',
+	captcha_site_key: gvar.captcha_site_key,
 	events: {
 		click: {
 			inscription_clicked(){
 				this.open_popup('popup_inscription')
+				console.log(this.captcha_site_key)
 				const captchaContainer = grecaptcha.render('g-recaptcha', {
-					sitekey: this.sitekey,
+					sitekey: this.captcha_site_key,
 					callback: (response) => {
 						console.log(response)
 					}
@@ -39,6 +40,7 @@ Page.add({
 	},
 	init(){
 		console.log('init index')
+		console.log(gvar)
 		if(gvar.user.is_logged){
 			app.change_page('todo')
 			return false
@@ -117,7 +119,7 @@ Page.add({
 			$('#popup_response').html(error).attr('class', 'popup_response_error')
 			return false
 		}
-		$.api_php('public/login', 'signin_new_user', {
+		$.api('api/login', 'signin_new_user', {
 			email: email,
 			password: password,
 			captcha: captcha

@@ -1,3 +1,4 @@
+import pages from 'globals'
 pages.timeline = class{
 	constructor(){
 		$('#body').template('page_timeline', {

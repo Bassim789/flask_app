@@ -1,5 +1,5 @@
 import Event_binder from 'event_binder'
-const Header = class {
+export default class Header {
 	constructor() {
 		this.sidr_width = 260
 		this.sidr_transition = 200
@@ -35,11 +35,13 @@ const Header = class {
 		})
 	}
 	load() {
+		console.log('load header')
 		$('header').template('header', {
 			user_is_logged: gvar.user.is_logged,
 			logo: gvar.img.logo,
 			email: gvar.user.email,
-		})	
+		})
+		console.log('loaded header')
 		this.load_backround_sidr()
 	}
 	load_backround_sidr() {
@@ -78,4 +80,3 @@ const Header = class {
 		$('.menu_btn').animate({opacity: 1.0,}, this.sidr_transition)
 	}
 }
-export default Header

@@ -1,3 +1,4 @@
+import pages from 'globals'
 export default class Router {
 	constructor(domain) {
 		this.domain = domain
@@ -31,6 +32,8 @@ export default class Router {
 			.split(this.domain)[1]
 			.replace(/\//g,'')
 		page_name = page_name === '' ? 'index' : page_name
+		console.log(pages)
+		if(pages[page_name] === undefined) return false
 		new pages[page_name]()	
 	}
 	popstate() {

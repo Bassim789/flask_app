@@ -1,4 +1,5 @@
 import Event_binder from 'event_binder'
+import pages from 'globals'
 export default class Page{
 	static add(page){
 		page.render = function(){
@@ -15,6 +16,7 @@ export default class Page{
 			}
 			return false
 		}
+		console.log(pages)
 		pages[page.page_name] = function(){
 			if(page.data === undefined) page.data = {}
 			if(page.only_user_logged === undefined) page.only_user_logged = false
