@@ -17,7 +17,7 @@ class Watcher{
 		// 	requestCert: false,
 		// 	rejectUnauthorized: false
 		// }, app)
-		const server = require('http').createServer({}, app)
+		const server = require('http').createServer(app)
 		this.io = require('socket.io').listen(server)
 		server.listen(port, () => {
 			console.log('Watcher running on port ' + port)
