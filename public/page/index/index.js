@@ -76,7 +76,7 @@ Page.add({
 		const email = $('#email_connexion').val()
 		const password = $('#password_connexion').val()
 		const remember = $('#connexion_remember').val()
-		$.api_php('public/login', 'connexion', {
+		$.api('api/login', 'connexion', {
 			email: email,
 			password: password,
 			remember: remember

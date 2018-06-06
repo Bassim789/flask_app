@@ -4,18 +4,27 @@ import os
 from utils import render_template, render_page
 from python_app.Loader import Loader
 from python_app.User import User
+from python_app.Db import Db
+from python_app.Login import Login
 
 app = Flask(__name__)
-
 ROOT_PATH_APP = os.path.dirname(os.path.abspath(__file__)) + '/'
 
 def action(name):
 	return name == request.args.get('action')
 
+with open('config.json') as f: config = json.load(f)
+db = Db({
+	'db_host': config['db_mysql_db_host'],
+	'db_user': config['db_mysql_db_user'], 
+	'db_pass': config['db_mysql_db_password'], 
+	'db_name': config['db_mysql_db_name']
+})
+login = Login(db)
+
 @app.route('/')
 @app.route('/<page>')
 def index(page = ''):
-	with open('config.json') as f: config = json.load(f)
 	loader = Loader(ROOT_PATH_APP)
 	loader.include_folders([
 		'app/app',
@@ -45,8 +54,16 @@ def index(page = ''):
 @app.route('/api/login', methods=['POST'])
 def api_login():
 	if action('signin_new_user'):
-		return json.dumps({'res': 'OOOK'})
-	return json.dumps({'res': 'ok'})
+		return json.dumps({'res': 'ok', 'api': 'api/login connexion'})
+	if action('connexion'):
+		user = login.connexion(
+			request.form['email'], 
+			request.form['password'],
+			request.form['remember'])
+		if 'error_connexion' in user and 'id' not in user:
+			user = user['error_connexion']
+		return json.dumps({'res': 'ok', 'api': 'api/login connexion', 'user': str(user)})
+	return json.dumps({'res': 'api/login: no action found'})
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', debug=True)

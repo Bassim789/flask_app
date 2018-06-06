@@ -1,23 +1,26 @@
 class Watcher{
 	constructor(data){
 		this.root = data.root
-		this.connect('newapp2.simergie.ch')
+		this.connect()
 		this.exec = require('child_process').exec
-		this.fs = require('fs')
 		this.watch = require('node-watch')
 		this.watcher()
 	}
-	connect(domain){
+	connect(){
 		const port = 3013
 		const fs = require('fs')
 		const app = require('express')()
-		// const server = require('https').createServer({
-		// 	key: fs.readFileSync('/etc/letsencrypt/live/' + domain + '/privkey.pem'),
-		// 	cert: fs.readFileSync('/etc/letsencrypt/live/' + domain + '/fullchain.pem'),
-		// 	requestCert: false,
-		// 	rejectUnauthorized: false
-		// }, app)
-		const server = require('http').createServer(app)
+		config = JSON.parse(fs.readFileSync(this.root + 'config.json'))
+		if(config.http_mode === 'https'){
+			const server = require('https').createServer({
+				key: fs.readFileSync('/etc/letsencrypt/live/' + config.site_name + '/privkey.pem'),
+				cert: fs.readFileSync('/etc/letsencrypt/live/' + config.site_name + '/fullchain.pem'),
+				requestCert: false,
+				rejectUnauthorized: false
+			}, app)
+		} else {
+			const server = require('http').createServer(app)
+		}
 		this.io = require('socket.io').listen(server)
 		server.listen(port, () => {
 			console.log('Watcher running on port ' + port)
