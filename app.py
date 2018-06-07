@@ -1,4 +1,4 @@
-from flask import Flask, json, request
+from flask import Flask, json, request, make_response
 import os
 
 from utils import render_template, render_page
@@ -20,7 +20,7 @@ db = Db({
 	'db_pass': config['db_mysql_db_password'], 
 	'db_name': config['db_mysql_db_name']
 })
-login = Login(db)
+login = Login(db, config, app)
 
 @app.route('/')
 @app.route('/<page>')
@@ -54,7 +54,17 @@ def index(page = ''):
 @app.route('/api/login', methods=['POST'])
 def api_login():
 	if action('signin_new_user'):
-		return json.dumps({'res': 'ok', 'api': 'api/login connexion'})
+		res = login.inscription(
+			request.form['email'], 
+			request.form['password'],
+			request.form['captcha'])
+		if 'error_inscription' in res:
+			return json.dumps({
+				'res': 'error', 
+				'api': 'api/login inscription', 
+				'error': res['error_inscription']
+			})
+		return json.dumps({'res': 'ok', 'api': 'api/login inscription'})
 	if action('connexion'):
 		user = login.connexion(
 			request.form['email'], 
@@ -62,7 +72,15 @@ def api_login():
 			request.form['remember'])
 		if 'error_connexion' in user and 'id' not in user:
 			user = user['error_connexion']
-		return json.dumps({'res': 'ok', 'api': 'api/login connexion', 'user': str(user)})
+			return json.dumps({
+				'res': 'error', 
+				'api': 'api/login connexion', 
+				'error': str(user)
+			})
+		resp = make_response(json.dumps({'res': 'ok', 'api': 'api/login connexion', 'user': user}))
+		if request.form['remember'] == 'on':
+			resp.set_cookie('autologin', user['cookie_autologin'])
+		return resp
 	return json.dumps({'res': 'api/login: no action found'})
 
 if __name__ == "__main__":

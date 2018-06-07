@@ -10,16 +10,17 @@ class Watcher{
 		const port = 3013
 		const fs = require('fs')
 		const app = require('express')()
-		config = JSON.parse(fs.readFileSync(this.root + 'config.json'))
+		const config = JSON.parse(fs.readFileSync(this.root + 'config.json'))
+		let server
 		if(config.http_mode === 'https'){
-			const server = require('https').createServer({
+			server = require('https').createServer({
 				key: fs.readFileSync('/etc/letsencrypt/live/' + config.site_name + '/privkey.pem'),
 				cert: fs.readFileSync('/etc/letsencrypt/live/' + config.site_name + '/fullchain.pem'),
 				requestCert: false,
 				rejectUnauthorized: false
 			}, app)
 		} else {
-			const server = require('http').createServer(app)
+			server = require('http').createServer(app)
 		}
 		this.io = require('socket.io').listen(server)
 		server.listen(port, () => {
