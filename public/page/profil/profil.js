@@ -1,4 +1,5 @@
-import Page from 'Page.js'
+import Page from 'Page'
+import parts from 'globals'
 Page.add({
 	page_name: 'profil',
 	page_from_backend: true,
@@ -78,7 +79,7 @@ Page.add({
 			let end_date = moment($('#data_total_end_date').val(), 'YYYY-MM-DD')
 			end_date_unix = end_date.add(1, 'day').unix()
 		}
-		$.api_php('public/variable', 'get_data_total', {
+		$.api('api/variable', 'get_data_total', {
 			start_date_unix: start_date_unix,
 			end_date_unix: end_date_unix
 		}, (data) => {

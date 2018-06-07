@@ -86,8 +86,8 @@ Page.add({
 				gvar.user.is_logged = true
 				gvar.user.session_hash = data.session_hash
 				gvar.user.email = data.email
-				//app.change_page('todo')
-				//app.header.load()
+				app.change_page('todo')
+				app.header.load()
 			} else if (data.error === 'wrong_email'){
 	            error = "L'email est incorrect"
 	        } else if (data.error === 'wrong_password'){

@@ -1,4 +1,5 @@
 import parts from 'globals'
+import Event_binder from 'event_binder'
 parts.add_data_info = class{
 	constructor(page){
 		this.page = page

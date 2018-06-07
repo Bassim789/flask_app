@@ -1,17 +1,14 @@
-from flask import Flask, json, request, make_response
+from flask import Flask, json, request, make_response, redirect
 import os
-
-from utils import render_template, render_page
+from utils import *
 from python_app.Loader import Loader
 from python_app.User import User
 from python_app.Db import Db
 from python_app.Login import Login
 
 app = Flask(__name__)
+app.secret_key = 'fdiu98dfds0af3nwiweee'
 ROOT_PATH_APP = os.path.dirname(os.path.abspath(__file__)) + '/'
-
-def action(name):
-	return name == request.args.get('action')
 
 with open('config.json') as f: config = json.load(f)
 db = Db({
@@ -51,37 +48,37 @@ def index(page = ''):
 	})
 	return page_wrap
 
-@app.route('/api/login', methods=['POST'])
+@app.route('/api/login', methods=['GET', 'POST'])
 def api_login():
+
 	if action('signin_new_user'):
 		res = login.inscription(
 			request.form['email'], 
 			request.form['password'],
 			request.form['captcha'])
-		if 'error_inscription' in res:
-			return json.dumps({
-				'res': 'error', 
-				'api': 'api/login inscription', 
-				'error': res['error_inscription']
-			})
-		return json.dumps({'res': 'ok', 'api': 'api/login inscription'})
+		if is_error(res): return send_error(res)
+		return send_ok()
+
 	if action('connexion'):
-		user = login.connexion(
-			request.form['email'], 
-			request.form['password'],
-			request.form['remember'])
-		if 'error_connexion' in user and 'id' not in user:
-			user = user['error_connexion']
-			return json.dumps({
-				'res': 'error', 
-				'api': 'api/login connexion', 
-				'error': str(user)
-			})
-		resp = make_response(json.dumps({'res': 'ok', 'api': 'api/login connexion', 'user': user}))
-		if request.form['remember'] == 'on':
+		form = request.form
+		user = login.connexion(form['email'], form['password'], form['remember'])
+		if is_error(user): return send_error(user)
+		resp = make_response(send_ok())
+		if form['remember'] == 'on':
 			resp.set_cookie('autologin', user['cookie_autologin'])
 		return resp
-	return json.dumps({'res': 'api/login: no action found'})
+
+	if action('logout'):
+		login.logout()
+		return send_ok()
+
+	if action('activation'):
+		res = login.activate_account(request.args.get('code'))
+		if not res: return 'error account activation'
+		url = config['http_mode'] + '://' + config['site_name']
+		return redirect(url, code=302)
+
+	return send({'res': 'api/login: no action found'})
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', debug=True)

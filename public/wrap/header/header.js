@@ -26,7 +26,7 @@ export default class Header {
 	}
 	logout(){
 		this.close_sidr() 
-		$.api_php('public/login', 'logout', {}, (data) => {
+		$.api('api/login', 'logout', {}, (data) => {
 			gvar.user.is_logged = false
 			gvar.user.is_admin = false
 			gvar.user.session_hash = false
